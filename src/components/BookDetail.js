@@ -11,7 +11,11 @@ class HomePage extends Component {
       <Modal isActive>
         <ModalBackground onClick={this.handleModalClose} />
         <ModalContent>
-          <Box>{this.props.match.params.primary_isbn13}</Box>
+          <Box>
+            {this.props.list_name_encoded}
+            :
+            {this.props.match.params.primary_isbn13}
+          </Box>
         </ModalContent>
         <ModalClose onClick={this.handleModalClose} />
       </Modal>

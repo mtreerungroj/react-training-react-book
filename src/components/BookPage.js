@@ -21,7 +21,12 @@ class BookPage extends Component {
   }
 
   renderBookDetail = props => {
-    return <BookDetail {...propa} />
+    return (
+      <BookDetail
+        {...props}
+        list_name_encoded={this.props.match.params.list_name_encoded}
+      />
+    )
   }
 
   render () {
