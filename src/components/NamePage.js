@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Link, Switch } from "react-router-dom";
 import BookAPI from "../api";
 
-const NameItem = ({ list_name, list_name_encoded }) => (
+const NameItem = ({ list_name, list_name_encoded, match }) => (
   <div>
-    <Link to={`/name/${list_name_encoded}`}>{list_name}</Link>
+    <Link to={`/${match.url}/${list_name_encoded}`}>{list_name}</Link>
   </div>
 );
 
@@ -20,7 +20,13 @@ class NamePage extends Component {
   }
 
   render() {
-    return <div>{this.state.names.map(n => <NameItem {...n} />)}</div>;
+    return (
+      <div>
+        {this.state.names.map(n => (
+          <NameItem {...n} match={this.props.match} key={n.list_name_encoded} />
+        ))}
+      </div>
+    );
   }
 }
 
