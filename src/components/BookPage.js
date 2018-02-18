@@ -1,24 +1,23 @@
-import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
-import BookAPI from "../api";
+import React, { Component } from "react"
+import { Route, Link } from "react-router-dom"
+import BookAPI from "../api"
+import BookDetail from "./BookDetail"
 
 const BookItem = ({ title, primary_isbn13, match }) => (
   <div>
     <Link to={`${match.url}/${primary_isbn13}`}>{title}</Link>
   </div>
-);
-
-const BookDetail = ({ match }) => <div>{match.params.primary_isbn13}</div>;
+)
 
 class BookPage extends Component {
   constructor(props) {
-    super(props);
-    this.state = { books: [] };
+    super(props)
+    this.state = { books: [] }
   }
 
   componentDidMount() {
-    let books = BookAPI.getBooks(this.props.match.params.list_name_encoded);
-    this.setState({ books });
+    let books = BookAPI.getBooks(this.props.match.params.list_name_encoded)
+    this.setState({ books })
   }
 
   render() {
@@ -30,11 +29,11 @@ class BookPage extends Component {
         ))}
         <Route
           path={`${this.props.match.url}/:primary_isbn13`}
-          render={BookDetail}
+          component={BookDetail}
         />
       </div>
-    );
+    )
   }
 }
 
-export default BookPage;
+export default BookPage
