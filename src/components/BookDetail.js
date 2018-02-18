@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
-import { Modal, ModalBackground, ModalContent, ModalClose } from 'bloomer'
+import { Box, Modal, ModalBackground, ModalContent, ModalClose } from 'bloomer'
+
 class HomePage extends Component {
+  handleModalClose = () => {
+    this.props.history.goBack()
+  }
+
   render () {
     return (
       <Modal isActive>
-        <ModalBackground />
+        <ModalBackground onClick={this.handleModalClose} />
         <ModalContent>
-          {this.props.match.params.primary_isbn13}
+          <Box>{this.props.match.params.primary_isbn13}</Box>
         </ModalContent>
-        <ModalClose />
+        <ModalClose onClick={this.handleModalClose} />
       </Modal>
     )
   }
