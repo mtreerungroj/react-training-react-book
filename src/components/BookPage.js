@@ -20,6 +20,10 @@ class BookPage extends Component {
     this.setState({ books })
   }
 
+  renderBookDetail = props => {
+    return <BookDetail {...propa} />
+  }
+
   render () {
     return (
       <div>
@@ -29,7 +33,7 @@ class BookPage extends Component {
         ))}
         <Route
           path={`${this.props.match.url}/:primary_isbn13`}
-          component={BookDetail}
+          render={this.renderBookDetail}
         />
       </div>
     )
