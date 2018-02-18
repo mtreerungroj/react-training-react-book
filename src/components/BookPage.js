@@ -19,6 +19,7 @@ class BookPage extends Component {
     // let books = BookAPI.getBooks(this.props.match.params.list_name_encoded)
     // this.setState({ books })
 
+    this.isExact = this.props.match.isExact
     ;(async () => {
       let books = await BookAPI.getBooks(
         this.props.match.params.list_name_encoded
@@ -27,10 +28,19 @@ class BookPage extends Component {
     })()
   }
 
+  handleModalClose = props => {
+    if (this.isExact) {
+      this.props.history.goBack()
+    } else {
+      this.props.history.replace(this.props.match.url)
+    }
+  }
+
   renderBookDetail = props => {
     return (
       <BookDetail
         {...props}
+        onModalClose={this.handleModalClose}
         list_name_encoded={this.props.match.params.list_name_encoded}
       />
     )

@@ -35,18 +35,16 @@ class HomePage extends Component {
     // this.setState({ book: _.find(books, ['primary_isbn13', primary_isbn13]) })
   }
 
-  handleModalClose = () => this.props.history.goBack()
-
   render () {
     let book = this.state.book
     return !book
       ? <div />
       : <Modal isActive>
-        <ModalBackground onClick={this.handleModalClose} />
+        <ModalBackground onClick={this.props.onModalClose} />
         <ModalCard>
           <ModalCardHeader>
             <ModalCardTitle>{book.title}</ModalCardTitle>
-            <Delete onClick={this.handleModalClose} />
+            <Delete onClick={this.props.onModalClose} />
           </ModalCardHeader>
           <ModalCardBody>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
@@ -60,7 +58,7 @@ class HomePage extends Component {
             </div>
           </ModalCardBody>
           <ModalCardFooter>
-            <Button isColor='success' onClick={this.handleModalClose}>
+            <Button isColor='success' onClick={this.props.onModalClose}>
               {'OK'}
             </Button>
           </ModalCardFooter>
