@@ -1,33 +1,33 @@
-import React, { Component } from "react";
-import { Link, Switch } from "react-router-dom";
-import BookAPI from "../api";
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import BookAPI from '../api'
 
 const NameItem = ({ list_name, list_name_encoded, match }) => (
   <div>
     <Link to={`${match.url}/${list_name_encoded}`}>{list_name}</Link>
   </div>
-);
+)
 
 class NamePage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { names: [] };
+  constructor (props) {
+    super(props)
+    this.state = { names: [] }
   }
 
-  componentDidMount() {
-    let names = BookAPI.getNames();
-    this.setState({ names });
+  componentDidMount () {
+    let names = BookAPI.getNames()
+    this.setState({ names })
   }
 
-  render() {
+  render () {
     return (
       <div>
         {this.state.names.map(n => (
           <NameItem {...n} match={this.props.match} key={n.list_name_encoded} />
         ))}
       </div>
-    );
+    )
   }
 }
 
-export default NamePage;
+export default NamePage
