@@ -32,6 +32,14 @@ class NamePage extends Component {
     })()
   }
 
+  componentWillReceiveProps (nextProps) {
+    let params = new URLSearchParams(nextProps.history.location.search)
+    if (params.get('searchText') !== this.state.searchText) {
+      console.log('updating')
+      this.handleSearchTextChange(params.get('searchText') || '')
+    }
+  }
+
   handleSearchTextChange = searchText => {
     console.log(searchText)
     let names = this.state.name
