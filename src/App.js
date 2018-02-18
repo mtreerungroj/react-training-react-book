@@ -16,7 +16,7 @@ class App extends Component {
             <div>
               <Switch>
                 <Route exact path="/" component={HomePage} />
-                <Route path="/name" component={NamePage} />
+                <Route exact path="/name" component={NamePage} />
                 <Route path="/name/:list_name_encoded" component={BookPage} />
               </Switch>
             </div>

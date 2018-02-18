@@ -4,7 +4,7 @@ import BookAPI from "../api";
 
 const NameItem = ({ list_name, list_name_encoded, match }) => (
   <div>
-    <Link to={`/${match.url}/${list_name_encoded}`}>{list_name}</Link>
+    <Link to={`${match.url}/${list_name_encoded}`}>{list_name}</Link>
   </div>
 );
 
