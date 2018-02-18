@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import HomePage from './components/HomePage'
-import NamePage from './components/NamePage'
+import HomePage from "./components/HomePage";
+import NamePage from "./components/NamePage";
 
 class App extends Component {
   render() {
