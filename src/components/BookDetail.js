@@ -1,8 +1,16 @@
-import React, { Component } from "react"
-
+import React, { Component } from 'react'
+import { Modal, ModalBackground, ModalContent, ModalClose } from 'bloomer'
 class HomePage extends Component {
-  render() {
-    return <div>{this.props.match.params.primary_isbn13}</div>
+  render () {
+    return (
+      <Modal isActive>
+        <ModalBackground />
+        <ModalContent>
+          {this.props.match.params.primary_isbn13}
+        </ModalContent>
+        <ModalClose />
+      </Modal>
+    )
   }
 }
 

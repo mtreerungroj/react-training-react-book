@@ -1,7 +1,7 @@
-import React, { Component } from "react"
-import { Route, Link } from "react-router-dom"
-import BookAPI from "../api"
-import BookDetail from "./BookDetail"
+import React, { Component } from 'react'
+import { Route, Link } from 'react-router-dom'
+import BookAPI from '../api'
+import BookDetail from './BookDetail'
 
 const BookItem = ({ title, primary_isbn13, match }) => (
   <div>
@@ -10,17 +10,17 @@ const BookItem = ({ title, primary_isbn13, match }) => (
 )
 
 class BookPage extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = { books: [] }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     let books = BookAPI.getBooks(this.props.match.params.list_name_encoded)
     this.setState({ books })
   }
 
-  render() {
+  render () {
     return (
       <div>
         <div>Book from {this.props.match.params.list_name_encoded}</div>
