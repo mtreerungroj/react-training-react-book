@@ -1,7 +1,12 @@
 import React, { Component } from "react";
+import { Link, Switch } from "react-router-dom";
 import BookAPI from "../api";
 
-const NameItem = ({ list_name }) => <div>{list_name}</div>;
+const NameItem = ({ list_name, list_name_encoded }) => (
+  <div>
+    <Link to={`/name/${list_name_encoded}`}>{list_name}</Link>
+  </div>
+);
 
 class NamePage extends Component {
   constructor(props) {
