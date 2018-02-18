@@ -16,8 +16,15 @@ class BookPage extends Component {
   }
 
   componentDidMount () {
-    let books = BookAPI.getBooks(this.props.match.params.list_name_encoded)
-    this.setState({ books })
+    // let books = BookAPI.getBooks(this.props.match.params.list_name_encoded)
+    // this.setState({ books })
+
+    ;(async () => {
+      let books = await BookAPI.getBooks(
+        this.props.match.params.list_name_encoded
+      )
+      this.setState({ books })
+    })()
   }
 
   renderBookDetail = props => {
@@ -30,18 +37,20 @@ class BookPage extends Component {
   }
 
   render () {
-    return (
-      <div>
+    let books = this.state.books
+
+    return !books
+      ? <div>Loading...</div>
+      : <div>
         <div>Book from {this.props.match.params.list_name_encoded}</div>
-        {this.state.books.map(b => (
+        {books.map(b => (
           <BookItem {...b} key={b.primary_isbn13} match={this.props.match} />
-        ))}
+          ))}
         <Route
           path={`${this.props.match.url}/:primary_isbn13`}
           render={this.renderBookDetail}
-        />
+          />
       </div>
-    )
   }
 }
 
