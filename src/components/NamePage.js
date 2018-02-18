@@ -13,7 +13,7 @@ const NameItem = ({ list_name, list_name_encoded, match }) => (
 class NamePage extends Component {
   constructor (props) {
     super(props)
-    this.state = { names: [] }
+    this.state = { names: [], searchText: '' }
   }
 
   componentDidMount () {
@@ -25,22 +25,24 @@ class NamePage extends Component {
     ;(async () => {
       let names = await BookAPI.getNames()
       this.allNames = names
-      this.setState({ names })
+      let params = new URLSearchParams(this.props.history.location.search)
+      let searchText = params.get('searchText') || ''
+      this.setState({ searchText })
+      this.handleSearchTextChange(searchText)
     })()
   }
 
-  handleSearchTextChange = e => {
-    let searchText = e.target.value
+  handleSearchTextChange = searchText => {
+    console.log(searchText)
     let names = this.state.name
-    if (searchText) {
-      names = _.filter(
-        this.allNames,
-        n => n.list_name.search(new RegExp(searchText, 'i')) >= 0
-      )
-      this.setState({ names })
-    } else {
-      this.setState({ names: this.allNames })
-    }
+    names = _.filter(
+      this.allNames,
+      n => n.list_name.search(new RegExp(searchText, 'i')) >= 0
+    )
+    this.props.history.replace(
+      `${this.props.history.location.pathname}?searchText=${searchText}`
+    )
+    this.setState({ searchText, names })
   }
 
   render () {
@@ -51,7 +53,8 @@ class NamePage extends Component {
             <Input
               type='text'
               placeholder='Search'
-              onChange={this.handleSearchTextChange}
+              value={this.state.searchText}
+              onChange={e => this.handleSearchTextChange(e.target.value)}
               style={{ width: 400 }}
             />
           </Control>
