@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import NamePage from "./components/NamePage";
+import BookPage from "./components/BookPage";
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route path="/name" component={NamePage} />
+                <Route path="/name/:list_name_encoded" component={BookPage} />
               </Switch>
             </div>
           </div>
